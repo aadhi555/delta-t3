@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gcc -o vuln vuln.c -fno-stack-protector -no-pie -z noexecstack -O0

@@ -1,0 +1,157 @@
+ Image t3_delta-music-server Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 526B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 725B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim
+#3 DONE 1.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/7] FROM docker.io/library/python:3.11-slim@sha256:ae52c5bef62a6bdd42cd1e8dffef86b9cd284bde9427da79839de7a4b983e7ca
+#5 resolve docker.io/library/python:3.11-slim@sha256:ae52c5bef62a6bdd42cd1e8dffef86b9cd284bde9427da79839de7a4b983e7ca 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 62B done
+#6 DONE 0.0s
+
+#7 [5/7] COPY server.py .
+#7 CACHED
+
+#8 [2/7] WORKDIR /app
+#8 CACHED
+
+#9 [3/7] RUN apt-get update && apt-get install -y 	ffmpeg 	mpv 	curl 	&& rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [4/7] RUN pip install --no-cache-dir 	psycopg2-binary 	bcrypt 	yt-dlp
+#10 CACHED
+
+#11 [6/7] COPY schema.sql .
+#11 CACHED
+
+#12 [7/7] RUN mkdir -p music backups transcoded_cache
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:ed9b3552ef0823bf15734e076fa893df1067c8d2257d03eb9d659b4807760341 done
+#13 exporting config sha256:878834c137458b3ea063419a6f61e3f7e733a6bf19b2c316e559b166b59b66f3 done
+#13 exporting attestation manifest sha256:0005486fb6ade9439c6f8a04ceae86899bdeba3388ad653d8e70ff9601267fcb 0.0s done
+#13 exporting manifest list sha256:3342402a5a2045ab8c4b2e97cfbd34da926c4a5533ef43ed9d1af092da3d36f6 done
+#13 naming to docker.io/library/t3_delta-music-server:latest done
+#13 unpacking to docker.io/library/t3_delta-music-server:latest done
+#13 DONE 0.1s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image t3_delta-music-server Built 
+ Network t3_delta_backend-network Creating 
+ Network t3_delta_backend-network Created 
+ Volume t3_delta_cache_data Creating 
+ Volume t3_delta_cache_data Created 
+ Volume t3_delta_postgres_data Creating 
+ Volume t3_delta_postgres_data Created 
+ Volume t3_delta_music_data Creating 
+ Volume t3_delta_music_data Created 
+ Volume t3_delta_backup_data Creating 
+ Volume t3_delta_backup_data Created 
+ Container t3_delta-postgres-1 Creating 
+ Container t3_delta-postgres-1 Created 
+ Container t3_delta-music-server-1 Creating 
+ Container t3_delta-music-server-1 Created 
+ Container t3_delta-nginx-1 Creating 
+ Container t3_delta-nginx-1 Created 
+Attaching to music-server-1, nginx-1, postgres-1
+ Container t3_delta-postgres-1 Starting 
+ Container t3_delta-postgres-1 Started 
+ Container t3_delta-postgres-1 Waiting 
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+postgres-1  | selecting default time zone ... Etc/UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start....2026-06-22 11:19:06.998 UTC [48] LOG:  starting PostgreSQL 15.18 (Debian 15.18-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+postgres-1  | 2026-06-22 11:19:06.999 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-06-22 11:19:07.012 UTC [51] LOG:  database system was shut down at 2026-06-22 11:19:06 UTC
+postgres-1  | 2026-06-22 11:19:07.017 UTC [48] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/schema.sql
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE TABLE
+postgres-1  | INSERT 0 8
+postgres-1  | CREATE TABLE
+postgres-1  | CREATE INDEX
+postgres-1  | 
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2026-06-22 11:19:07.576 UTC [48] LOG:  received fast shutdown request
+postgres-1  | 2026-06-22 11:19:07.577 UTC [48] LOG:  aborting any active transactions
+postgres-1  | 2026-06-22 11:19:07.580 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2026-06-22 11:19:07.580 UTC [49] LOG:  shutting down
+postgres-1  | 2026-06-22 11:19:07.594 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-06-22 11:19:07.705 UTC [49] LOG:  checkpoint complete: wrote 954 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.055 s, sync=0.023 s, total=0.125 s; sync files=346, longest=0.015 s, average=0.001 s; distance=4458 kB, estimate=4458 kB
+postgres-1  | 2026-06-22 11:19:07.712 UTC [48] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2026-06-22 11:19:07.834 UTC [1] LOG:  starting PostgreSQL 15.18 (Debian 15.18-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+postgres-1  | 2026-06-22 11:19:07.835 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-06-22 11:19:07.835 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-06-22 11:19:07.858 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-06-22 11:19:07.889 UTC [66] LOG:  database system was shut down at 2026-06-22 11:19:07 UTC
+postgres-1  | 2026-06-22 11:19:07.905 UTC [1] LOG:  database system is ready to accept connections
+ Container t3_delta-postgres-1 Healthy 
+ Container t3_delta-music-server-1 Starting 
+ Container t3_delta-music-server-1 Started 
+ Container t3_delta-nginx-1 Starting 
+ Container t3_delta-nginx-1 Started 
+nginx-1     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-1     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-1     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-1     | /docker-entrypoint.sh: Configuration complete; ready for start up

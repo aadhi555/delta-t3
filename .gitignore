@@ -1,0 +1,6 @@
+.env
+music/
+backups/
+transcoded_cache/
+__pycache__/
+*.pyc
